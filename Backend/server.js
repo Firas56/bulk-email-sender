@@ -83,12 +83,10 @@ const checkScheduledCampaigns = async () => {
           await campaign.update({ status: 'Failed' });
         }
       } catch (error) {
-        console.error(`Error sending scheduled campaign ${campaign.name}:`, error);
         await campaign.update({ status: 'Failed' });
       }
     }
   } catch (error) {
-    console.error('Error checking scheduled campaigns:', error);
   }
 };
 
@@ -108,7 +106,6 @@ app.use('/api/recipients', recipientRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
-  console.error('Global error handler:', err);
   res.status(500).json({
     error: 'Internal server error',
     message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
@@ -141,10 +138,6 @@ async function startServer() {
 
   } catch (error) {
     console.error('Failed to start server:', error.message);
-    console.error('Database connection failed. Please check:');
-    console.error('- MySQL server is running');
-    console.error('- Database credentials are correct');
-    console.error('- Database exists and user has permissions');
     process.exit(1);
   }
 }

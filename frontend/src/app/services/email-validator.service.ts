@@ -55,8 +55,6 @@ export class EmailValidatorService {
     ).pipe(
       map(response => response.results),
       catchError(error => {
-        console.error('Email validation API error:', error);
-        console.error('Error details:', error.status, error.message);
         // Return all emails as invalid if API fails
         return of(emails.map(email => ({
           email,

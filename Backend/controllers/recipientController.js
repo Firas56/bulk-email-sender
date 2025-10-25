@@ -154,7 +154,6 @@ exports.createRecipient = async (req, res) => {
         res.status(201).json(newRecipient);
 
     } catch (error) {
-        console.error('Error creating recipient:', error);
         res.status(500).json({ message: 'Server error while creating recipient.' });
     }
 };
@@ -174,7 +173,6 @@ exports.getRecipients = async (req, res) => {
         res.status(200).json(recipients);
 
     } catch (error) {
-        console.error('Error fetching recipients:', error);
         res.status(500).json({ message: 'Server error while fetching recipients.' });
     }
 };
@@ -193,7 +191,6 @@ exports.getRecipientById = async (req, res) => {
         res.status(200).json(recipient);
 
     } catch (error) {
-        console.error('Error fetching recipient by ID:', error);
         res.status(500).json({ message: 'Server error while fetching recipient.' });
     }
 };
@@ -215,7 +212,6 @@ exports.updateRecipient = async (req, res) => {
         res.status(200).json(updatedRecipient);
 
     } catch (error) {
-        console.error('Error updating recipient:', error);
         res.status(500).json({ message: 'Server error while updating recipient.' });
     }
 };
@@ -236,7 +232,6 @@ exports.deleteRecipient = async (req, res) => {
         res.status(200).json({ message: 'Recipient removed successfully.' });
 
     } catch (error) {
-        console.error('Error deleting recipient:', error);
         res.status(500).json({ message: 'Server error while deleting recipient.' });
     }
 };
@@ -258,7 +253,6 @@ exports.deleteAllRecipients = async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Error deleting all recipients:', error);
         res.status(500).json({ message: 'Server error while deleting all recipients.' });
     }
 };
@@ -429,7 +423,6 @@ exports.bulkCreateRecipients = async (req, res) => {
         res.status(201).json(response);
 
     } catch (error) {
-        console.error('Error bulk creating recipients:', error);
         res.status(500).json({ 
             message: 'Server error while processing CSV import.',
             error: 'SERVER_ERROR'

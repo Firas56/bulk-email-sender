@@ -35,7 +35,6 @@ exports.createTemplate = async (req, res) => {
         res.status(201).json(newTemplate);
 
     } catch (error) {
-        console.error('Error creating template:', error);
         res.status(500).json({ message: 'Server error while creating template.' });
     }
 };
@@ -55,7 +54,6 @@ exports.getTemplates = async (req, res) => {
         res.status(200).json(templates);
 
     } catch (error) {
-        console.error('Error fetching templates:', error);
         res.status(500).json({ message: 'Server error while fetching templates.' });
     }
 };
@@ -76,7 +74,6 @@ exports.getTemplateById = async (req, res) => {
         res.status(200).json(template);
 
     } catch (error) {
-        console.error('Error fetching template by ID:', error);
         res.status(500).json({ message: 'Server error while fetching template.' });
     }
 };
@@ -99,7 +96,6 @@ exports.updateTemplate = async (req, res) => {
         res.status(200).json(updatedTemplate);
 
     } catch (error) {
-        console.error('Error updating template:', error);
         res.status(500).json({ message: 'Server error while updating template.' });
     }
 };
@@ -121,7 +117,6 @@ exports.deleteTemplate = async (req, res) => {
         res.status(200).json({ message: 'Template removed successfully.' });
 
     } catch (error) {
-        console.error('Error deleting template:', error);
         res.status(500).json({ message: 'Server error while deleting template.' });
     }
 };

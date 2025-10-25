@@ -45,7 +45,6 @@ exports.createCampaign = async (req, res) => {
         res.status(201).json(newCampaign);
 
     } catch (error) {
-        console.error('Error creating campaign:', error);
         res.status(500).json({ message: 'Server error while creating campaign.' });
     }
 };
@@ -64,7 +63,6 @@ exports.getCampaigns = async (req, res) => {
         res.status(200).json(campaigns);
 
     } catch (error) {
-        console.error('Error fetching campaigns:', error);
         res.status(500).json({ message: 'Server error while fetching campaigns.' });
     }
 };
@@ -82,7 +80,6 @@ exports.getCampaignById = async (req, res) => {
         res.status(200).json(campaign);
 
     } catch (error) {
-        console.error('Error fetching campaign by ID:', error);
         res.status(500).json({ message: 'Server error while fetching campaign.' });
     }
 };
@@ -134,7 +131,6 @@ exports.updateCampaign = async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Error updating campaign:', error);
         res.status(500).json({ message: 'Server error while updating campaign.' });
     }
 };
@@ -154,7 +150,6 @@ exports.deleteCampaign = async (req, res) => {
         res.status(200).json({ message: 'Campaign removed successfully.' });
 
     } catch (error) {
-        console.error('Error deleting campaign:', error);
         res.status(500).json({ message: 'Server error while deleting campaign.' });
     }
 };
@@ -188,7 +183,6 @@ exports.scheduleCampaign = async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Error scheduling campaign:', error);
         res.status(500).json({ message: 'Server error while scheduling campaign.' });
     }
 };
@@ -254,7 +248,6 @@ exports.sendCampaign = async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Error sending campaign:', error);
         
         // Update campaign status to Failed
         try {
@@ -263,7 +256,6 @@ exports.sendCampaign = async (req, res) => {
                 await campaign.update({ status: 'Failed' });
             }
         } catch (updateError) {
-            console.error('Error updating campaign status:', updateError);
         }
         
         res.status(500).json({ message: 'Server error while sending campaign.' });

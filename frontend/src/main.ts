@@ -9,4 +9,4 @@ bootstrapApplication(App, {
     provideRouter(routes),
     provideHttpClient() // ✅ add this line
   ]
-}).catch(err => console.error(err));
+}).catch(err => {});
