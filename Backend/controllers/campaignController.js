@@ -17,6 +17,7 @@ const findOwnedCampaign = (id, userId) => {
 exports.createCampaign = async (req, res) => {
     try {
         const { name, templateId, recipientIds } = req.body;
+        console.log('Creating campaign with data:', { name, templateId, recipientIds });
 
         if (!name || !templateId) {
             return res.status(400).json({ message: 'Please include a name and templateId for the campaign.' });
@@ -43,6 +44,7 @@ exports.createCampaign = async (req, res) => {
             recipientIds: recipientIds || null // Store selected recipient IDs or null for all
         });
 
+        console.log('Created campaign:', newCampaign.toJSON());
         res.status(201).json(newCampaign);
 
     } catch (error) {
@@ -61,6 +63,7 @@ exports.getCampaigns = async (req, res) => {
             order: [['createdAt', 'DESC']]
         });
 
+        console.log('Returning campaigns:', campaigns.map(c => ({ id: c.id, name: c.name, recipientIds: c.recipientIds })));
         res.status(200).json(campaigns);
 
     } catch (error) {
