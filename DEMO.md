@@ -162,3 +162,14 @@ The Bulk Email Sender demonstrates a complete, production-ready email marketing 
 - **Production Ready**: Robust error handling and security
 
 This application showcases modern full-stack development practices and provides a solid foundation for email marketing operations.
+
+## 📸 Screenshots
+
+Screenshots of the application can be found in the `screenshots/` folder:
+
+- `dashboard.png` - Main dashboard with campaign overview
+- `campaigns.png` - Campaign management interface  
+- `recipients.png` - Recipient management and CSV import
+- `templates.png` - Email template management
+- `login.png` - User authentication
+- `register.png` - User registration

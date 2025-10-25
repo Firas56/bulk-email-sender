@@ -63,11 +63,8 @@ exports.getCampaigns = async (req, res) => {
             order: [['createdAt', 'DESC']]
         });
 
-        console.log('Returning campaigns:', campaigns.map(c => ({ id: c.id, name: c.name, recipientIds: c.recipientIds })));
-        
         // Convert Sequelize objects to plain objects to ensure proper serialization
         const plainCampaigns = campaigns.map(campaign => campaign.toJSON());
-        console.log('Plain campaigns:', plainCampaigns.map(c => ({ id: c.id, name: c.name, recipientIds: c.recipientIds })));
         
         res.status(200).json(plainCampaigns);
 
