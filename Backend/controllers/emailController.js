@@ -20,11 +20,9 @@ exports.sendBulkEmails = async (req, res) => {
 
     // Load recipients based on campaign's recipient selection
     let recipients;
-    console.log('Campaign recipientIds:', campaign.recipientIds);
     
     if (campaign.recipientIds && campaign.recipientIds.length > 0) {
       // Send to specific selected recipients
-      console.log('Sending to specific recipients:', campaign.recipientIds);
       recipients = await Recipient.findAll({
         where: { 
           id: campaign.recipientIds,
@@ -34,13 +32,10 @@ exports.sendBulkEmails = async (req, res) => {
       });
     } else {
       // Send to all valid recipients
-      console.log('Sending to all valid recipients');
       recipients = await Recipient.findAll({
         where: { userId: campaign.userId, isValid: true }
       });
     }
-    
-    console.log('Found recipients:', recipients.length);
 
     if (!recipients.length) {
       return res.status(400).json({ message: 'No valid recipients found for this user' });
