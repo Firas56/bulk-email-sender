@@ -73,33 +73,4 @@ export class EmailValidatorService {
       })
     );
   }
-
-  // Get validation statistics
-  getValidationStats(emails: string[]): Observable<EmailValidationStats> {
-    return this.api.post<EmailValidationResponse>(
-      '/campaigns/validate-emails',
-      { emails }
-    ).pipe(
-      map(response => response.stats),
-      catchError(error => {
-        console.error('Email validation stats error:', error);
-        return of({
-          total: emails.length,
-          valid: 0,
-          invalid: emails.length
-        });
-      })
-    );
-  }
-
-  // Check if email domain exists (simplified version)
-  checkDomainExists(email: string): Observable<boolean> {
-    const domain = email.split('@')[1];
-    
-    // For demo purposes, we'll simulate domain checking
-    // In a real app, you'd use a service like Hunter.io or similar
-    const commonDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'company.com'];
-    
-    return of(commonDomains.includes(domain.toLowerCase()));
-  }
 }

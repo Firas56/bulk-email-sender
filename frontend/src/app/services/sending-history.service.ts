@@ -13,16 +13,4 @@ export class SendingHistoryService {
   getSendingHistory(): Observable<SendingHistory[]> {
     return this.api.get<SendingHistory[]>('/sending-history');
   }
-
-  // Get sending history for a specific campaign
-  getCampaignHistory(campaignId: number): Observable<SendingHistory[]> {
-    return this.api.get<SendingHistory[]>(`/sending-history/campaign/${campaignId}`);
-  }
-
-  // Get recent sending history (last 10 entries)
-  getRecentHistory(): Observable<SendingHistory[]> {
-    return this.api.get<SendingHistory[]>('/sending-history/recent');
-  }
 }
-
-
