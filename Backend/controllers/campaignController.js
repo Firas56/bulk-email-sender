@@ -64,7 +64,12 @@ exports.getCampaigns = async (req, res) => {
         });
 
         console.log('Returning campaigns:', campaigns.map(c => ({ id: c.id, name: c.name, recipientIds: c.recipientIds })));
-        res.status(200).json(campaigns);
+        
+        // Convert Sequelize objects to plain objects to ensure proper serialization
+        const plainCampaigns = campaigns.map(campaign => campaign.toJSON());
+        console.log('Plain campaigns:', plainCampaigns.map(c => ({ id: c.id, name: c.name, recipientIds: c.recipientIds })));
+        
+        res.status(200).json(plainCampaigns);
 
     } catch (error) {
         res.status(500).json({ message: 'Server error while fetching campaigns.' });
