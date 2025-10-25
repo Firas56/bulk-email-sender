@@ -16,7 +16,7 @@ const findOwnedCampaign = (id, userId) => {
 // Create a new campaign
 exports.createCampaign = async (req, res) => {
     try {
-        const { name, templateId } = req.body;
+        const { name, templateId, recipientIds } = req.body;
 
         if (!name || !templateId) {
             return res.status(400).json({ message: 'Please include a name and templateId for the campaign.' });
@@ -40,6 +40,7 @@ exports.createCampaign = async (req, res) => {
             templateId,
             status: 'Draft', // Initial status
             userId: req.userId, // Set the owner ID from the middleware
+            recipientIds: recipientIds || null // Store selected recipient IDs or null for all
         });
 
         res.status(201).json(newCampaign);

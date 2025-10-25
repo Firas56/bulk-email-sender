@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     scheduledAt: DataTypes.DATE,
-    sentAt: DataTypes.DATE
+    sentAt: DataTypes.DATE,
+    recipientIds: DataTypes.JSON
   }, {
     sequelize,
     modelName: 'Campaign',

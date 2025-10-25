@@ -18,10 +18,23 @@ exports.sendBulkEmails = async (req, res) => {
     if (!campaign) return res.status(404).json({ message: 'Campaign not found' });
     if (!campaign.Template) return res.status(404).json({ message: 'No template linked to this campaign' });
 
-    // Load recipients belonging to the campaign's user
-    const recipients = await Recipient.findAll({
-      where: { userId: campaign.userId, isValid: true }
-    });
+    // Load recipients based on campaign's recipient selection
+    let recipients;
+    if (campaign.recipientIds && campaign.recipientIds.length > 0) {
+      // Send to specific selected recipients
+      recipients = await Recipient.findAll({
+        where: { 
+          id: campaign.recipientIds,
+          userId: campaign.userId, 
+          isValid: true 
+        }
+      });
+    } else {
+      // Send to all valid recipients
+      recipients = await Recipient.findAll({
+        where: { userId: campaign.userId, isValid: true }
+      });
+    }
 
     if (!recipients.length) {
       return res.status(400).json({ message: 'No valid recipients found for this user' });
