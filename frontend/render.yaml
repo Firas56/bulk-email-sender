@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: bulk-email-frontend
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build -- --configuration=production
+    staticPublishPath: ./dist/bulk-email-frontend/browser
+    envVars:
+      - key: NODE_ENV
+        value: production
